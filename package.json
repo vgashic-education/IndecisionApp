@@ -1,0 +1,14 @@
+{
+  "name": "indecisionapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@bitbucket.org:onemanteam_/indecisionapp.git",
+  "author": "Vladimir Gasic <vgashic@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1",
+    "eslint": "^4.17.0",
+    "global": "^4.3.2"
+  }
+}
