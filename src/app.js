@@ -4,23 +4,22 @@ console.log('App.js is running');
 
 var app = {
 	title: 'Indecision App',
-	subtitle: 'my first react app'
+	subtitle: 'Can\'t decide what to do? We can help!'
 }
 
 var template = (
 	<div>
 		<h1>{app.title}</h1>
-		<h3>{app.subtitle}</h3>
+		<p>{app.subtitle}</p>
 	</div>
 );
 
-/*
+
 var user = {
 	name: 'Gasha',
 	age: 38,
-	location: 'Beograd'
+	location: 'Belgrade'
 }
-
 
 var templateTwo = (
 	<div>
@@ -29,7 +28,7 @@ var templateTwo = (
 		<p>Location: {user.location}</p>
 	</div>
 );
-*/
+
 var appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);

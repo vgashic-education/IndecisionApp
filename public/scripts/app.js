@@ -4,7 +4,7 @@ console.log('App.js is running');
 
 var app = {
 	title: 'Indecision App',
-	subtitle: 'my first react app'
+	subtitle: 'Can\'t decide what to do? We can help!'
 };
 
 var template = React.createElement(
@@ -16,28 +16,40 @@ var template = React.createElement(
 		app.title
 	),
 	React.createElement(
-		'h3',
+		'p',
 		null,
 		app.subtitle
 	)
 );
 
-/*
 var user = {
 	name: 'Gasha',
 	age: 38,
-	location: 'Beograd'
-}
+	location: 'Belgrade'
+};
 
-
-var templateTwo = (
-	<div>
-		<h1>{user.name}</h1>
-		<p>Age: {user.age}</p>
-		<p>Location: {user.location}</p>
-	</div>
+var templateTwo = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		user.name
+	),
+	React.createElement(
+		'p',
+		null,
+		'Age: ',
+		user.age
+	),
+	React.createElement(
+		'p',
+		null,
+		'Location: ',
+		user.location
+	)
 );
-*/
+
 var appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);
