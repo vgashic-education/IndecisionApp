@@ -33,3 +33,19 @@ var user = {
 };
 
 console.log(user.printPlacesLived());
+
+// challenge
+
+var multiplier = {
+	numbers: [1, 2, 3, 4],
+	multiplyBy: 3,
+	multiply: function multiply() {
+		var _this2 = this;
+
+		return this.numbers.map(function (number) {
+			return number * _this2.multiplyBy;
+		});
+	}
+};
+
+console.log(multiplier.multiply());
