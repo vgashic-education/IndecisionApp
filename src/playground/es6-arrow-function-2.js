@@ -20,10 +20,9 @@ const user = {
 	name: 'Gasha',
 	cities: ['Sarajevo', 'Beograd'],
 	printPlacesLived: function () {
-		const self = this;
 
-		this.cities.forEach(function (city) {
-			console.log(`${self.name} has lived in ${city}`);
+		this.cities.forEach((city) => {
+			console.log(`${this.name} has lived in ${city}`);
 		});
 	}
 };

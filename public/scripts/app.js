@@ -22,10 +22,10 @@ var user = {
 	name: 'Gasha',
 	cities: ['Sarajevo', 'Beograd'],
 	printPlacesLived: function printPlacesLived() {
-		var self = this;
+		var _this = this;
 
 		this.cities.forEach(function (city) {
-			console.log(self.name + ' has lived in ' + city);
+			console.log(_this.name + ' has lived in ' + city);
 		});
 	}
 };
