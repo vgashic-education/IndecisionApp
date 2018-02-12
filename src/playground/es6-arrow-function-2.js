@@ -1,13 +1,11 @@
-'use strict';
-
 // arguments object - no longer bound
 
-var add = function add(a, b) {
+const add = function (a, b) {
 	console.log(arguments);
 	return a + b;
 };
 
-var addArrow = function addArrow(a, b) {
+const addArrow = (a, b) => {
 	//console.log(arguments);
 	return a + b;
 };
@@ -18,14 +16,14 @@ console.log(addArrow(55, 1, 1001));
 */
 
 // this - no longer bound
-var user = {
+const user = {
 	name: 'Gasha',
 	cities: ['Sarajevo', 'Beograd'],
-	printPlacesLived: function printPlacesLived() {
-		var self = this;
+	printPlacesLived: function () {
+		const self = this;
 
 		this.cities.forEach(function (city) {
-			console.log(self.name + ' has lived in ' + city);
+			console.log(`${self.name} has lived in ${city}`);
 		});
 	}
 };
