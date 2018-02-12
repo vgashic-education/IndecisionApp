@@ -19,7 +19,7 @@ console.log(addArrow(55, 1, 1001));
 const user = {
 	name: 'Gasha',
 	cities: ['Sarajevo', 'Beograd'],
-	printPlacesLived: function () {
+	printPlacesLived() {
 
 		this.cities.forEach((city) => {
 			console.log(`${this.name} has lived in ${city}`);
