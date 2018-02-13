@@ -19,7 +19,7 @@ const template = (
 );
 
 /*
-var user = {
+const user = {
 	name: 'Gasha',
 	age: 38,
 	location: 'Belgrade'
@@ -35,7 +35,7 @@ function getLocation(location) {
 	}
 }
 
-var templateTwo = (
+const templateTwo = (
 	<div>
 		<h1>{user.name ? user.name : 'Anonymous'}</h1>
 		{(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
@@ -44,8 +44,16 @@ var templateTwo = (
 );
 */
 
+let count = 0;
+const templateTwo = (
+	<div>
+		<h1>Count: {count}</h1>
+		<button id="my-id" className="button">+1</button>
+	</div>
+);
+
 
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

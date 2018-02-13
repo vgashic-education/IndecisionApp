@@ -1,5 +1,5 @@
 var nameVar = 'gasha';
-var nameVar = 'bla';
+//var nameVar = 'bla';
 
 console.log('nameVar', nameVar);
 
