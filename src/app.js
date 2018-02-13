@@ -45,15 +45,40 @@ const templateTwo = (
 */
 
 let count = 0;
-const templateTwo = (
-	<div>
-		<h1>Count: {count}</h1>
-		<button id="my-id" className="button">+1</button>
-	</div>
-);
 
+const addOne = () => {
+	console.log('+1');
+	count++;
+	renderCounterApp();
+};
 
+const substractOne = () => {
+	console.log('-1');
+	count--;
+	renderCounterApp();
+};
+
+const resetCounter = () => {
+	console.log('reset');
+	count = 0;
+	renderCounterApp();
+};
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+const renderCounterApp = () => {
+
+	const templateTwo = (
+		<div>
+			<h1>Count: {count}</h1>
+			<button onClick={addOne}>+1</button>
+			<button onClick={substractOne}>-1</button>
+			<button onClick={resetCounter}>reset</button>
+		</div>
+	);
+
+	ReactDOM.render(templateTwo, appRoot);
+
+};
+
+renderCounterApp();
