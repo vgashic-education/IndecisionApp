@@ -6,79 +6,63 @@ console.log('App.js is running');
 const app = {
 	title: 'Indecision App',
 	subtitle: 'Can\'t decide what to do? We can help!',
-	options: ['one', 'two']
+	options: []
 }
 
 
-const template = (
-	<div>
-		<h1>{app.title}</h1>
-		{app.subtitle && <p>{app.subtitle}</p>}
-		<p>{app.options && app.options.length > 0 ? `Here are your options: ${app.options.join(',')}` : 'No options'}</p>
-	</div>
-);
 
-/*
-const user = {
-	name: 'Gasha',
-	age: 38,
-	location: 'Belgrade'
-}
+const renderApp = () => {
 
-function getLocation(location) {
-	//return location || 'Unknown';
+	const appRoot = document.getElementById('app');
 
-	if (location) {
-		return <p>Location: {location}</p>;
-	} else {
-		return undefined;
-	}
-}
-
-const templateTwo = (
-	<div>
-		<h1>{user.name ? user.name : 'Anonymous'}</h1>
-		{(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-		{getLocation(user.location)}
-	</div>
-);
-*/
-
-let count = 0;
-
-const addOne = () => {
-	console.log('+1');
-	count++;
-	renderCounterApp();
-};
-
-const substractOne = () => {
-	console.log('-1');
-	count--;
-	renderCounterApp();
-};
-
-const resetCounter = () => {
-	console.log('reset');
-	count = 0;
-	renderCounterApp();
-};
-
-const appRoot = document.getElementById('app');
-
-const renderCounterApp = () => {
-
-	const templateTwo = (
+	const template = (
 		<div>
-			<h1>Count: {count}</h1>
-			<button onClick={addOne}>+1</button>
-			<button onClick={substractOne}>-1</button>
-			<button onClick={resetCounter}>reset</button>
+			<h1>{app.title}</h1>
+			{app.subtitle && <p>{app.subtitle}</p>}
+			<p>{app.options && app.options.length > 0 ? `Here are your options: ${app.options.join(',')}` : 'No options'}</p>
+			<p>{app.options.length}</p>
+
+			<button onClick={clearOptios}>Remove all</button>
+
+			<ol>
+				{
+					app.options.map((option, index) => <li id={`option-${index}`}>{option}</li>)
+				}
+			</ol>
+
+			<form onSubmit={onFormSubmit}>
+				<input type="text" name="option" />
+				<button>Add Option</button>
+			</form>
 		</div>
 	);
 
-	ReactDOM.render(templateTwo, appRoot);
+	ReactDOM.render(template, appRoot);
 
-};
+}
 
-renderCounterApp();
+
+const onFormSubmit = (e) => {
+
+	e.preventDefault();
+
+	const option = e.target.elements.option.value;
+
+	if (option) {
+		app.options.push(option);
+		e.target.elements.option.value = '';
+
+		renderApp();
+	}
+
+}
+
+const clearOptios = (e) => {
+
+	app.options = [];
+
+	renderApp();
+
+}
+
+renderApp();
