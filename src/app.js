@@ -9,6 +9,18 @@ const app = {
 	options: []
 }
 
+const onMakeDecision = () => {
+
+	const randomNumber = Math.floor(Math.random() * app.options.length);
+	console.log(randomNumber);
+
+	const option = app.options[randomNumber];
+	console.log(option);
+
+
+
+};
+
 
 
 const renderApp = () => {
@@ -20,13 +32,13 @@ const renderApp = () => {
 			<h1>{app.title}</h1>
 			{app.subtitle && <p>{app.subtitle}</p>}
 			<p>{app.options && app.options.length > 0 ? `Here are your options: ${app.options.join(',')}` : 'No options'}</p>
-			<p>{app.options.length}</p>
 
-			<button onClick={clearOptios}>Remove all</button>
+			<button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
+			<button onClick={clearOptions}>Remove all</button>
 
 			<ol>
 				{
-					app.options.map((option, index) => <li id={`option-${index}`}>{option}</li>)
+					app.options.map((option, index) => <li key={`option-${index}`}>{option}</li>)
 				}
 			</ol>
 
@@ -57,7 +69,7 @@ const onFormSubmit = (e) => {
 
 }
 
-const clearOptios = (e) => {
+const clearOptions = (e) => {
 
 	app.options = [];
 
