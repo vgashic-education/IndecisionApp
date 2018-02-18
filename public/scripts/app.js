@@ -28,9 +28,9 @@ var renderApp = function renderApp() {
 			{ onClick: toggleVisibility },
 			detailsVisible ? 'Hide details' : 'Show details'
 		),
-		React.createElement(
+		detailsVisible && React.createElement(
 			'article',
-			{ id: 'details', hidden: !detailsVisible },
+			null,
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto velit, iste ullam reprehenderit fugiat culpa animi incidunt rem adipisci omnis! Aperiam voluptate nostrum nihil facere, ad quibusdam quas unde tenetur?'
 		)
 	);
