@@ -1,41 +1,35 @@
 'use strict';
 
-var appRoot = document.getElementById('app');
-var detailsVisible = false;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-// functions
-//////////////////////////////////
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var toggleVisibility = function toggleVisibility() {
-	detailsVisible = !detailsVisible;
-	renderApp();
-};
+var Person = function () {
+	function Person() {
+		var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Annonymous';
+		var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-//////////////////////////////////
+		_classCallCheck(this, Person);
 
-var renderApp = function renderApp() {
+		this.name = name;
+		this.age = age;
+	}
 
-	var template = React.createElement(
-		'div',
-		null,
-		React.createElement(
-			'h1',
-			null,
-			'Visibility toggle'
-		),
-		React.createElement(
-			'button',
-			{ onClick: toggleVisibility },
-			detailsVisible ? 'Hide details' : 'Show details'
-		),
-		detailsVisible && React.createElement(
-			'article',
-			null,
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto velit, iste ullam reprehenderit fugiat culpa animi incidunt rem adipisci omnis! Aperiam voluptate nostrum nihil facere, ad quibusdam quas unde tenetur?'
-		)
-	);
+	_createClass(Person, [{
+		key: 'getGreeting',
+		value: function getGreeting() {
+			return 'Hi ' + this.name;
+		}
+	}, {
+		key: 'getDescription',
+		value: function getDescription() {
+			return this.name + ' is ' + this.age + ' year(s) old!';
+		}
+	}]);
 
-	ReactDOM.render(template, appRoot);
-};
+	return Person;
+}();
 
-renderApp();
+var me = new Person('Gasha', 38);
+
+console.log(me.getGreeting(), me.getDescription());
