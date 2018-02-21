@@ -50,7 +50,7 @@ class Traveler extends Person {
 
 		let description = `Hi I am ${this.name}.`;
 
-		if (!!this.homeLocation) {
+		if (this.homeLocation) {
 			description += ` I'm visiting from ${this.homeLocation}. `
 		}
 
