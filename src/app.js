@@ -1,5 +1,8 @@
 'use strict';
 
+
+
+
 class IndecisionApp extends React.Component {
 	render() {
 
@@ -31,21 +34,39 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+
+	handlePick() {
+		alert('handlePick');
+	}
+
 	render() {
 		return (
 			<div>
-				<button>What should I do?</button>
+				<button onClick={this.handlePick}>What should I do?</button>
 			</div>
 		);
 	}
 }
 
+
 class Options extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.handleRemoveAll = this.handleRemoveAll.bind(this);
+	}
+
+	handleRemoveAll() {
+		console.log(this.props.options);
+	}
+
 	render() {
 		return (
 			<div>
+				<button onClick={this.handleRemoveAll.bind(this)}>Remove all options
+				</button>
 				{
-					this.props.options.map((option, index) => <p key={`option-${index}`}>{option}</p>)
+					this.props.options.map((option, index) => <Option key={`option-${index}`} optionText={option} />)
 				}
 			</div>
 		)
@@ -53,10 +74,12 @@ class Options extends React.Component {
 }
 
 class Option extends React.Component {
+
+
 	render() {
 		return (
 			<div>
-				<p>single option</p>
+				Option: {this.props.optionText}
 			</div>
 		);
 	}
@@ -64,11 +87,32 @@ class Option extends React.Component {
 
 
 class AddOption extends React.Component {
+
+	handleAddOption(e) {
+
+		e.preventDefault();
+
+		console.log(e);
+
+		const option = e.target.elements.option.value.trim();
+
+		console.log(options);
+
+
+		if (option) {
+			options.push(option)
+		}
+
+		e.target.elements.options.value = "";
+	}
+
+
 	render() {
 		return (
-			<div>
-				<p>Here goes add option form</p>
-			</div>
+			<form onSubmit={this.handleAddOption}>
+				<input type="text" name="option" />
+				<button>Add</button>
+			</form>
 		)
 	}
 }
