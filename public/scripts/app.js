@@ -8,48 +8,33 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Counter = function (_React$Component) {
-	_inherits(Counter, _React$Component);
+var Visibility = function (_React$Component) {
+	_inherits(Visibility, _React$Component);
 
-	function Counter(props) {
-		_classCallCheck(this, Counter);
+	function Visibility(props) {
+		_classCallCheck(this, Visibility);
 
-		var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Visibility.__proto__ || Object.getPrototypeOf(Visibility)).call(this, props));
 
-		_this.onAddClick = _this.onAddClick.bind(_this);
-		_this.onSubstractClick = _this.onSubstractClick.bind(_this);
-		_this.onResetClick = _this.onResetClick.bind(_this);
+		_this.visibilityToggle = _this.visibilityToggle.bind(_this);
 
 		_this.state = {
-			count: 0
+			visible: false,
+			buttonCaption: 'Show'
 		};
+
 		return _this;
 	}
 
-	_createClass(Counter, [{
-		key: 'onAddClick',
-		value: function onAddClick(e) {
+	_createClass(Visibility, [{
+		key: 'visibilityToggle',
+		value: function visibilityToggle(e) {
 			this.setState(function (prevState) {
+				console.log(prevState.visible);
+
 				return {
-					count: prevState.count + 1
-				};
-			});
-		}
-	}, {
-		key: 'onSubstractClick',
-		value: function onSubstractClick(e) {
-			this.setState(function (prevState) {
-				return {
-					count: prevState.count - 1
-				};
-			});
-		}
-	}, {
-		key: 'onResetClick',
-		value: function onResetClick() {
-			this.setState(function () {
-				return {
-					count: 0
+					visible: !prevState.visible,
+					buttonCaption: !prevState.visible ? 'Hide' : 'Show'
 				};
 			});
 		}
@@ -62,94 +47,58 @@ var Counter = function (_React$Component) {
 				React.createElement(
 					'h1',
 					null,
-					'Count: ',
-					this.state.count
+					'Visibility app'
 				),
 				React.createElement(
 					'button',
-					{ onClick: this.onAddClick },
-					'+1'
+					{ onClick: this.visibilityToggle },
+					this.state.buttonCaption
 				),
-				React.createElement(
-					'button',
-					{ onClick: this.onSubstractClick },
-					'-1'
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.onResetClick },
-					'reset'
+				this.state.visible && React.createElement(
+					'article',
+					null,
+					'Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, expedita incidunt! Voluptatem et nihil rerum molestias! Soluta quidem incidunt quas ducimus aliquam, omnis ea. Fugiat, labore molestiae. Eaque, vel cum.'
 				)
 			);
 		}
 	}]);
 
-	return Counter;
+	return Visibility;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(Visibility, null), document.getElementById('app'));
 
-// /*
-// const user = {
-// 	name: 'Gasha',
-// 	age: 38,
-// 	location: 'Belgrade'
-// }
+/*
+const appRoot = document.getElementById('app');
+let detailsVisible = false;
 
-// function getLocation(location) {
-// 	//return location || 'Unknown';
+// functions
+//////////////////////////////////
 
-// 	if (location) {
-// 		return <p>Location: {location}</p>;
-// 	} else {
-// 		return undefined;
-// 	}
-// }
+const toggleVisibility = () => {
+	detailsVisible = !detailsVisible;
+};
 
-// const templateTwo = (
-// 	<div>
-// 		<h1>{user.name ? user.name : 'Anonymous'}</h1>
-// 		{(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-// 		{getLocation(user.location)}
-// 	</div>
-// );
-// */
+//////////////////////////////////
 
-// let count = 0;
+const renderApp = () => { }
 
-// const addOne = () => {
-// 	console.log('+1');
-// 	count++;
-// 	renderCounterApp();
-// };
+const template = (
 
-// const substractOne = () => {
-// 	console.log('-1');
-// 	count--;
-// 	renderCounterApp();
-// };
+	<div>
+		<h1>Visibility toggle</h1>
+		<button onClick={toggleVisibility}>{detailsVisible ? 'Hide details' : 'Show details'}</button>
+		{detailsVisible && (
+			<article>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto velit, iste ullam reprehenderit fugiat culpa animi incidunt rem adipisci omnis! Aperiam voluptate nostrum nihil facere, ad quibusdam quas unde tenetur?
+				</article>
+		)}
+	</div>
 
-// const resetCounter = () => {
-// 	console.log('reset');
-// 	count = 0;
-// 	renderCounterApp();
-// };
+);
 
-// const appRoot = document.getElementById('app');
+ReactDOM.render(template, appRoot);
 
-// const renderCounterApp = () => {
 
-// 	const templateTwo = (
-// 		<div>
-// 			<h1>Count: {count}</h1>
-// 			<button onClick={addOne}>+1</button>
-// 			<button onClick={substractOne}>-1</button>
-// 			<button onClick={resetCounter}>reset</button>
-// 		</div>
-// 	);
-
-// 	ReactDOM.render(templateTwo, appRoot);
-
-// };
-
-// renderCounterApp();
+renderApp();
+*/
