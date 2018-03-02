@@ -67,7 +67,7 @@ const onFormSubmit = (e) => {
 		renderApp();
 	}
 
-}
+};
 
 const clearOptions = (e) => {
 
@@ -75,6 +75,6 @@ const clearOptions = (e) => {
 
 	renderApp();
 
-}
+};
 
 renderApp();
