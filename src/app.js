@@ -1,6 +1,6 @@
 'use strict';
 
-
+// stateless functional component
 
 
 class IndecisionApp extends React.Component {
@@ -13,12 +13,13 @@ class IndecisionApp extends React.Component {
 		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
 
 		this.handlePick = this.handlePick.bind(this);
+		this.handleAddOption = this.handleAddOption.bind(this);
 
 		//#endregion
 
 
 		this.state = {
-			options: ['Jen', 'dva', 'tri']
+			options: []
 		};
 
 	};
@@ -47,6 +48,20 @@ class IndecisionApp extends React.Component {
 		alert(`You should ${this.state.options[randomIndex]}`);
 	}
 
+	handleAddOption(option) {
+		if (!option) {
+			return 'Enter valid value';
+		} else if (this.state.options.indexOf(option) > -1) {
+			return 'Option already exists';
+		}
+
+		this.setState((prevState) => {
+			return {
+				options: prevState.options.concat([option])
+			}
+		})
+	}
+
 	//#endregion
 
 	render() {
@@ -65,7 +80,9 @@ class IndecisionApp extends React.Component {
 					options={this.state.options}
 					handleDeleteOptions={this.handleDeleteOptions}
 				/>
-				<AddOption />
+				<AddOption
+					handleAddOption={this.handleAddOption}
+				/>
 			</div>
 		);
 	}
@@ -83,6 +100,22 @@ class Header extends React.Component {
 
 }
 
+/*
+const Action = (props) => {
+	return (
+		<div>
+			<button
+				onClick={props.handlePick}
+				disabled={!props.hasOptions}
+			>
+				What should I do?
+					</button>
+		</div>
+	);
+}
+*/
+
+/*
 class Action extends React.Component {
 
 	render() {
@@ -97,6 +130,20 @@ class Action extends React.Component {
 			</div>
 		);
 	}
+}
+*/
+
+const Action = (props) => {
+	return (
+		<div>
+			<button
+				onClick={props.handlePick}
+				disabled={props.hasOptions}
+			>
+				What should I do?
+					</button>
+		</div>
+	);
 }
 
 
@@ -117,8 +164,6 @@ class Options extends React.Component {
 }
 
 class Option extends React.Component {
-
-
 	render() {
 		return (
 			<div>
@@ -129,37 +174,61 @@ class Option extends React.Component {
 }
 
 
+
+
 class AddOption extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.handleAddOption = this.handleAddOption.bind(this);
+		this.state = {
+			error: undefined
+		}
+	}
 
 	handleAddOption(e) {
 
 		e.preventDefault();
 
-		console.log(e);
-
 		const option = e.target.elements.option.value.trim();
+		const error = this.props.handleAddOption(option);
 
-		console.log(options);
+		this.setState(() => {
+			return {
+				error: error
+			}
+		})
 
 
-		if (option) {
-			options.push(option)
-		}
-
-		e.target.elements.options.value = "";
+		e.target.elements.option.value = "";
 	}
 
 
 	render() {
 		return (
-			<form onSubmit={this.handleAddOption}>
-				<input type="text" name="option" />
-				<button>Add</button>
-			</form>
+			<div>
+				{this.state.error && <p>{this.state.error}</p>}
+				<form onSubmit={this.handleAddOption}>
+					<input type="text" name="option" />
+					<button>Add</button>
+				</form>
+			</div>
 		)
 	}
 }
 
+/*
+const User = (props) => {
+	return (
+		<div>
+			<p>Name: {props.name}</p>
+			<p>Age: {props.age}</p>
+		</div>
+	)
+}
+*/
 
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+
+// ReactDOM.render(<User name="Gasha" age="38" />, document.getElementById('app'));
